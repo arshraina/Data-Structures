@@ -1,34 +1,34 @@
 package LinkedList;
 import java.lang.*;
 
-class Node {
+class SLLNode {
     int data;
-    Node next;
-    public Node(int data) {
+    SLLNode next;
+    SLLNode(int data) {
         this.data = data;
         next = null;
     }
 }
 
 public class SinglyLinkedList {
-    public static Node insertBeg(Node head, int data) {
-        Node temp = new Node(data);
+    public static SLLNode insertBeg(SLLNode head, int data) {
+        SLLNode temp = new SLLNode(data);
         temp.next = head;
         return temp;
     }
-    public static Node insertEnd(Node head, int data) {
-        Node temp = new Node(data);
+    public static SLLNode insertEnd(SLLNode head, int data) {
+        SLLNode temp = new SLLNode(data);
         if(head==null) {
             return temp;
         }
-        Node curr = head;
+        SLLNode curr = head;
         while (curr.next!=null) {
             curr = curr.next;
         }
         curr.next = temp;
         return head;
     }
-    public static Node delHead(Node head) {
+    public static SLLNode delHead(SLLNode head) {
         if(head == null) {
             return null;
         }
@@ -37,27 +37,27 @@ public class SinglyLinkedList {
         }
 
     }
-    public static Node delTail(Node head) {
+    public static SLLNode delTail(SLLNode head) {
         if(head==null) {
             return null;
         }
         if(head.next==null) {
             return null;
         }
-        Node curr = head;
+        SLLNode curr = head;
         while(curr.next.next != null) {
             curr = curr.next;
         }
         curr.next = null;
         return head;
     }
-    public static Node insertPos(Node head, int pos, int data){
-        Node temp = new Node(data);
+    public static SLLNode insertPos(SLLNode head, int pos, int data){
+        SLLNode temp = new SLLNode(data);
         if (pos==1) {
             temp.next = head;
             return temp;
         }
-        Node curr = head;
+        SLLNode curr = head;
         for (int i = 1; i < pos-1 && curr!=null; i++) {
             curr = curr.next;
         }
@@ -69,7 +69,7 @@ public class SinglyLinkedList {
         return head;
     }
     public static void main(String[] args) {
-        Node head = null;
+        SLLNode head = null;
 
         head = insertBeg(head,10);
         head = insertBeg(head,20);
@@ -83,9 +83,9 @@ public class SinglyLinkedList {
         System.out.println(searchIterative(head,69));
         printList(head);
     }
-    public static int searchIterative(Node head, int data) {
+    public static int searchIterative(SLLNode head, int data) {
         int pos=1;
-        Node curr = head;
+        SLLNode curr = head;
         while(curr != null){
             if(curr.data == data){
                 return pos;
@@ -97,7 +97,7 @@ public class SinglyLinkedList {
         }
         return -1;
     }
-    public static int searchRecursive(Node head, int data) {
+    public static int searchRecursive(SLLNode head, int data) {
         if(head==null) {
             return -1;
         }
@@ -114,8 +114,8 @@ public class SinglyLinkedList {
             }
         }
     }
-    public static void printList(Node head) {
-        Node curr = head;
+    public static void printList(SLLNode head) {
+        SLLNode curr = head;
         while(curr!=null) {
             System.out.println(curr.data);
             curr = curr.next;
