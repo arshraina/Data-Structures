@@ -1,27 +1,37 @@
 package LinkedList;
 
-class Node {
+class DLLNode {
     int data;
-    Node prev;
-    Node next;
-    Node(int data) {
+    DLLNode prev;
+    DLLNode next;
+    DLLNode(int data) {
         this.data = data;
         prev = next = null;
     }
 }
 
 class DoublyLinkedList {
-    public static Node insertBegin(Node head, int data) {
-        Node temp = new Node(data);
+    public static DLLNode insertBegin(DLLNode head, int data) {
+        DLLNode temp = new DLLNode(data);
         temp.next = head;
         if (head != null){
             head.prev = temp;
         }
         return temp;
     }
-    public static Node reverseList(Node head) {
-        Node curr = head;
-        Node temp = null;
+    public static DLLNode insertEnd(DLLNode head, int data) {
+        DLLNode temp = new DLLNode(data);
+        DLLNode curr = head;
+        while(curr.next!=null) {
+            curr = curr.next;
+        }
+        curr.next = temp;
+        temp.prev = curr;
+        return head;
+    }
+    public static DLLNode reverseList(DLLNode head) {
+        DLLNode curr = head;
+        DLLNode temp = null;
         if(head == null || head.next==null){
             return head;
         }
@@ -33,7 +43,7 @@ class DoublyLinkedList {
         }
         return temp.prev;
     }
-    public static Node deleteHead(Node head) {
+    public static DLLNode deleteHead(DLLNode head) {
         if(head == null || head.next==null) {
             return null;
         }
@@ -42,11 +52,11 @@ class DoublyLinkedList {
         head.prev = null;
         return head;
     }
-    public static Node deleteTail(Node head) {
+    public static DLLNode deleteTail(DLLNode head) {
         if (head == null || head.next == null) {
             return null;
         }
-        Node curr = head;
+        DLLNode curr = head;
         while(curr.next!=null){
             curr = curr.next;
         }
@@ -54,22 +64,23 @@ class DoublyLinkedList {
         curr.prev = null;
         return head;
     }
-    public static void printList(Node head){
-        Node curr = head;
+    public static void printList(DLLNode head){
+        DLLNode curr = head;
         while(curr!=null){
             System.out.println(curr.data);
             curr = curr.next;
         }
     }
     public static void main(String[] args) {
-        Node head=new Node(10);
-        Node temp1=new Node(20);
-        Node temp2=new Node(30);
+        DLLNode head=new DLLNode(10);
+        DLLNode temp1=new DLLNode(20);
+        DLLNode temp2=new DLLNode(30);
         head.next=temp1;
         temp1.prev=head;
         temp1.next=temp2;
         temp2.prev=temp1;
         head = insertBegin(head, 13);
+        head = insertEnd(head, 43);
         head = reverseList(head);
         head = deleteHead(head);
         head = deleteTail(head);
