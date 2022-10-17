@@ -75,9 +75,16 @@ public class CircularLinkedList {
         CLLNode head = null;
         head = insertBegin(head, 10);
         head = insertBegin(head,20);
+        System.out.println("List after insertBegin operation: ");
+        printList(head);
         head = insertEnd(head,10);
         head = insertEnd(head,20);
+        System.out.println("\nList after insertEnd operation: ");
+        printList(head);
         head = delHead(head);
+        System.out.println("\nList after delHead operation: ");
+        printList(head);
+        System.out.println("\nFinal list: ");
         printList(head);
     }
 }
